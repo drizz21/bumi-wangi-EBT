@@ -1,0 +1,2163 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bumi Wangi — Energi Terbarukan Indonesia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --ink: #1a2b18;
+        --ink-light: #2e4a2a;
+        --surface: #f4f1ea;
+        --surface-2: #ede9df;
+        --white: #ffffff;
+        --accent: #7ec832;
+        --accent-warm: #d4b84a;
+        --muted: #7a7a6e;
+        --muted-2: #a8a89c;
+        --border: #ddd9cf;
+        --radius-sm: 10px;
+        --radius-md: 18px;
+        --radius-lg: 28px;
+        --radius-xl: 40px;
+        --ease: cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--surface);
+        color: var(--ink);
+        overflow-x: hidden;
+      }
+
+      /* ─── TYPOGRAPHY ─── */
+      .font-display {
+        font-family: "Cormorant Garamond", serif;
+      }
+      .font-ui {
+        font-family: "Space Grotesk", sans-serif;
+      }
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.16em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      .eyebrow::before {
+        content: "";
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--accent);
+        border-radius: 2px;
+      }
+
+      /* ─── BUTTONS ─── */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 28px;
+        border-radius: 100px;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 0.03em;
+        cursor: pointer;
+        border: none;
+        text-decoration: none;
+        transition:
+          transform 0.25s var(--ease),
+          box-shadow 0.25s var(--ease);
+      }
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+      .btn-primary {
+        background: var(--accent);
+        color: var(--ink);
+        box-shadow: 0 4px 20px rgba(126, 200, 50, 0.3);
+      }
+      .btn-primary:hover {
+        box-shadow: 0 8px 32px rgba(126, 200, 50, 0.45);
+      }
+      .btn-dark {
+        background: var(--ink);
+        color: var(--white);
+        box-shadow: 0 4px 20px rgba(26, 43, 24, 0.2);
+      }
+      .btn-dark:hover {
+        box-shadow: 0 8px 32px rgba(26, 43, 24, 0.35);
+      }
+      .btn-outline {
+        background: transparent;
+        color: var(--ink);
+        border: 1.5px solid var(--border);
+      }
+      .btn-outline:hover {
+        border-color: var(--ink);
+      }
+
+      .btn-circle {
+        width: 48px;
+        height: 48px;
+        padding: 0;
+        border-radius: 50%;
+        background: var(--accent);
+        color: var(--ink);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        cursor: pointer;
+        flex-shrink: 0;
+        transition:
+          transform 0.25s var(--ease),
+          background 0.2s;
+      }
+      .btn-circle:hover {
+        transform: scale(1.1) rotate(45deg);
+        background: var(--ink);
+        color: var(--white);
+      }
+      .btn-circle svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      /* ─── NAV ─── */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 20px 48px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        transition:
+          background 0.4s var(--ease),
+          backdrop-filter 0.4s,
+          padding 0.3s;
+      }
+      nav.scrolled {
+        background: rgba(244, 241, 234, 0.92);
+        backdrop-filter: blur(16px);
+        padding: 14px 48px;
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        color: var(--ink);
+      }
+      .nav-logo svg {
+        display: block;
+      }
+      .nav-wordmark {
+        font-family: "Space Grotesk", sans-serif;
+        font-weight: 700;
+        font-size: 17px;
+        letter-spacing: -0.01em;
+      }
+      .nav-wordmark span {
+        color: var(--accent);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 32px;
+      }
+      .nav-links a {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--ink);
+        text-decoration: none;
+        opacity: 0.6;
+        letter-spacing: 0.02em;
+        transition: opacity 0.2s;
+      }
+      .nav-links a:hover {
+        opacity: 1;
+      }
+
+      .nav-cta {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      /* ─── HERO ─── */
+      #hero {
+        min-height: 100vh;
+        position: relative;
+        overflow: hidden;
+        display: flex;
+        align-items: flex-end;
+        padding: 0 48px 72px;
+      }
+      .hero-bg {
+        position: absolute;
+        inset: 0;
+        background-image: url("https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1800&q=85&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center 40%;
+        transform: scale(1.04);
+        transition: transform 8s ease-out;
+      }
+      .hero-bg.loaded {
+        transform: scale(1);
+      }
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(26, 43, 24, 0.15) 0%,
+          rgba(26, 43, 24, 0.05) 40%,
+          rgba(26, 43, 24, 0.7) 80%,
+          rgba(26, 43, 24, 0.85) 100%
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 900px;
+      }
+      .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 100px;
+        padding: 8px 16px 8px 8px;
+        color: var(--white);
+        font-size: 13px;
+        font-weight: 500;
+        margin-bottom: 28px;
+      }
+      .hero-badge-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--accent);
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        50% {
+          opacity: 0.6;
+          transform: scale(1.4);
+        }
+      }
+      .hero-headline {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(64px, 9vw, 128px);
+        font-weight: 600;
+        line-height: 1.06;
+        letter-spacing: -0.02em;
+        color: var(--white);
+        margin-bottom: 32px;
+      }
+      .hero-headline .line-1 {
+        display: block;
+        font-weight: 700;
+      }
+      .hero-headline .line-2 {
+        display: block;
+        font-weight: 300;
+        font-style: italic;
+        opacity: 0.5;
+        font-size: 0.75em;
+        letter-spacing: 0.01em;
+        line-height: 1.3;
+        margin: 0.1em 0;
+      }
+      .hero-headline .line-3 {
+        display: block;
+        font-weight: 600;
+      }
+      .hero-headline em {
+        font-style: italic;
+        font-weight: 300;
+        opacity: 0.75;
+      }
+      .hero-headline .dim {
+        opacity: 0.45;
+        font-weight: 400;
+        font-style: italic;
+      }
+      .hero-headline .glyph {
+        color: var(--accent);
+        font-size: 0.38em;
+        display: inline-block;
+        vertical-align: super;
+        margin: 0 5px;
+        font-style: normal;
+      }
+      .hero-sub {
+        font-family: "DM Sans", sans-serif;
+        font-size: 16px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.65);
+        max-width: 460px;
+        line-height: 1.7;
+        margin-bottom: 40px;
+        letter-spacing: 0.01em;
+      }
+      .hero-actions {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+      }
+
+      .hero-float-card {
+        position: absolute;
+        right: 48px;
+        bottom: 72px;
+        z-index: 3;
+        background: var(--white);
+        border-radius: var(--radius-md);
+        padding: 20px 24px;
+        width: 240px;
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.18);
+        animation: floatUp 1s var(--ease) 0.6s both;
+      }
+      @keyframes floatUp {
+        from {
+          opacity: 0;
+          transform: translateY(24px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-float-label {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 6px;
+      }
+      .hero-float-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 40px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+        line-height: 1;
+      }
+      .hero-float-val span {
+        font-size: 16px;
+        color: var(--accent);
+      }
+      .hero-float-meta {
+        font-size: 12px;
+        color: var(--muted);
+        margin-top: 4px;
+      }
+      .hero-float-bar {
+        margin-top: 12px;
+        height: 6px;
+        border-radius: 3px;
+        background: var(--surface-2);
+        overflow: hidden;
+      }
+      .hero-float-bar-fill {
+        height: 100%;
+        border-radius: 3px;
+        background: var(--accent);
+        width: 0;
+        transition: width 1.8s var(--ease) 1.4s;
+      }
+
+      /* ─── ABOUT ─── */
+      #about {
+        padding: 120px 48px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .about-left {
+      }
+      .about-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(40px, 4.5vw, 64px);
+        font-weight: 500;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin: 16px 0 24px;
+      }
+      .about-title .dim {
+        color: var(--muted);
+        font-weight: 400;
+        font-style: italic;
+      }
+      .about-body {
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        line-height: 1.75;
+        color: var(--muted);
+        max-width: 440px;
+        margin-bottom: 36px;
+      }
+      .about-images {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 220px 160px;
+        gap: 14px;
+      }
+      .about-img {
+        border-radius: var(--radius-md);
+        overflow: hidden;
+        background: var(--surface-2);
+      }
+      .about-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+      .about-img:first-child {
+        grid-row: 1 / 3;
+      }
+      .about-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: var(--accent);
+        border-radius: 100px;
+        padding: 6px 14px;
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--ink);
+        margin-top: 6px;
+      }
+
+      /* ─── SOLUTIONS ─── */
+      #solutions {
+        padding: 0 48px 120px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .solutions-header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 48px;
+      }
+      .solutions-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(36px, 4vw, 56px);
+        font-weight: 500;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin-top: 12px;
+      }
+      .solutions-title .dim {
+        color: var(--muted);
+        font-weight: 400;
+        font-style: italic;
+      }
+      .solutions-grid {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr;
+        grid-template-rows: 320px 220px;
+        gap: 14px;
+      }
+      .sol-card {
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        position: relative;
+        cursor: pointer;
+        background: var(--ink);
+        transition: transform 0.3s var(--ease);
+      }
+      .sol-card:hover {
+        transform: scale(0.985);
+      }
+      .sol-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+        opacity: 0.75;
+        transition:
+          opacity 0.4s,
+          transform 0.5s var(--ease);
+      }
+      .sol-card:hover img {
+        opacity: 0.6;
+        transform: scale(1.04);
+      }
+      .sol-card:first-child {
+        grid-row: 1 / 3;
+      }
+      .sol-card-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(26, 43, 24, 0.85) 0%,
+          transparent 55%
+        );
+      }
+      .sol-card-content {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 24px 26px;
+      }
+      .sol-card-badge {
+        display: inline-block;
+        background: var(--accent);
+        color: var(--ink);
+        border-radius: 100px;
+        padding: 4px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+      .sol-card-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 28px;
+        font-weight: 500;
+        letter-spacing: -0.01em;
+        color: var(--white);
+        line-height: 1.15;
+      }
+      .sol-card-arrow {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        opacity: 0;
+        transition:
+          opacity 0.3s,
+          transform 0.3s var(--ease);
+      }
+      .sol-card:hover .sol-card-arrow {
+        opacity: 1;
+        transform: rotate(45deg);
+      }
+
+      /* ─── IMPACT ─── */
+      #impact {
+        margin: 0 48px 120px;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+        position: relative;
+        min-height: 380px;
+        display: flex;
+        align-items: center;
+      }
+      .impact-bg {
+        position: absolute;
+        inset: 0;
+        background-image: url("https://images.unsplash.com/photo-1548337138-e87d889cc369?w=1600&q=80&auto=format&fit=crop");
+        background-size: cover;
+        background-position: center;
+      }
+      .impact-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(26, 43, 24, 0.78);
+      }
+      .impact-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        padding: 80px 72px;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 40px;
+        align-items: center;
+      }
+      .impact-intro {
+        grid-column: span 1;
+      }
+      .impact-intro-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 36px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        color: var(--white);
+        line-height: 1.1;
+        margin-bottom: 12px;
+      }
+      .impact-intro-sub {
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.7;
+      }
+      .stat-item {
+        text-align: center;
+      }
+      .stat-divider {
+        width: 1px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.15);
+        justify-self: center;
+        display: none;
+      }
+      .stat-number {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(42px, 5vw, 68px);
+        font-weight: 500;
+        color: var(--white);
+        line-height: 1;
+        letter-spacing: -0.02em;
+      }
+      .stat-number .stat-unit {
+        color: var(--accent);
+        font-size: 0.55em;
+        font-weight: 400;
+      }
+      .stat-label {
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.55);
+        margin-top: 8px;
+        line-height: 1.5;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      /* ─── PRICING ─── */
+      #pricing {
+        padding: 0 48px 120px;
+        max-width: 1400px;
+        margin: 0 auto;
+      }
+      .pricing-header {
+        text-align: center;
+        margin-bottom: 56px;
+      }
+      .pricing-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(36px, 4vw, 58px);
+        font-weight: 500;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin-top: 12px;
+      }
+      .pricing-title .dim {
+        color: var(--muted);
+        font-weight: 400;
+        font-style: italic;
+      }
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .price-card {
+        border-radius: var(--radius-lg);
+        padding: 48px 44px;
+        border: 1.5px solid var(--border);
+        background: var(--white);
+      }
+      .price-card.dark {
+        background: var(--ink);
+        border-color: var(--ink);
+      }
+      .price-card-label {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 10px;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
+      .price-card.dark .price-card-label {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .price-card-tag {
+        display: inline-block;
+        background: var(--accent);
+        color: var(--ink);
+        border-radius: 100px;
+        padding: 4px 12px;
+        font-size: 11px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+      .price-card-amount {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 58px;
+        font-weight: 500;
+        letter-spacing: -0.03em;
+        color: var(--ink);
+        line-height: 1;
+      }
+      .price-card.dark .price-card-amount {
+        color: var(--white);
+      }
+      .price-card-amount small {
+        font-size: 16px;
+        font-weight: 500;
+        color: var(--muted);
+        margin-left: 4px;
+      }
+      .price-card.dark .price-card-amount small {
+        color: rgba(255, 255, 255, 0.5);
+      }
+      .price-card-desc {
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        color: var(--muted);
+        margin: 16px 0 32px;
+        line-height: 1.7;
+      }
+      .price-card.dark .price-card-desc {
+        color: rgba(255, 255, 255, 0.55);
+      }
+      .price-features {
+        list-style: none;
+        margin-bottom: 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .price-features li {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        color: var(--ink);
+      }
+      .price-card.dark .price-features li {
+        color: rgba(255, 255, 255, 0.85);
+      }
+      .price-check {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: rgba(126, 200, 50, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+      .price-card.dark .price-check {
+        background: rgba(126, 200, 50, 0.2);
+      }
+      .price-check svg {
+        width: 11px;
+        height: 11px;
+        color: var(--accent);
+      }
+      .price-card-divider {
+        height: 1px;
+        background: var(--border);
+        margin-bottom: 32px;
+      }
+      .price-card.dark .price-card-divider {
+        background: rgba(255, 255, 255, 0.1);
+      }
+
+      /* ─── WHY ─── */
+      #why {
+        padding: 0 48px 120px;
+        max-width: 1400px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 80px;
+        align-items: center;
+      }
+      .why-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(36px, 4vw, 56px);
+        font-weight: 500;
+        line-height: 1.05;
+        letter-spacing: -0.02em;
+        margin: 14px 0 24px;
+      }
+      .why-title .dim {
+        color: var(--muted);
+        font-weight: 400;
+        font-style: italic;
+      }
+      .why-body {
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        color: var(--muted);
+        line-height: 1.75;
+        margin-bottom: 36px;
+        max-width: 440px;
+      }
+      .why-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        margin-bottom: 40px;
+      }
+      .why-list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        font-family: "DM Sans", sans-serif;
+        font-size: 14px;
+        font-weight: 300;
+        color: var(--ink);
+        line-height: 1.65;
+      }
+      .why-list-icon {
+        width: 32px;
+        height: 32px;
+        border-radius: 10px;
+        background: var(--surface-2);
+        border: 1.5px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+      .why-list-icon svg {
+        width: 14px;
+        height: 14px;
+        color: var(--accent);
+      }
+      .why-visual {
+        position: relative;
+        height: 560px;
+      }
+      .why-img-main {
+        position: absolute;
+        inset: 0;
+        border-radius: var(--radius-xl);
+        overflow: hidden;
+      }
+      .why-img-main img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .why-card-float {
+        position: absolute;
+        bottom: 28px;
+        left: -28px;
+        background: var(--white);
+        border-radius: var(--radius-md);
+        padding: 20px 22px;
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12);
+        width: 220px;
+      }
+      .why-card-float-num {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 38px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+      .why-card-float-num span {
+        color: var(--accent);
+      }
+      .why-card-float-label {
+        font-family: "DM Sans", sans-serif;
+        font-size: 12px;
+        font-weight: 300;
+        color: var(--muted);
+        margin-top: 4px;
+        line-height: 1.5;
+      }
+      .why-badge-float {
+        position: absolute;
+        top: 28px;
+        right: -20px;
+        background: var(--accent);
+        border-radius: var(--radius-sm);
+        padding: 12px 16px;
+        box-shadow: 0 8px 24px rgba(126, 200, 50, 0.3);
+      }
+      .why-badge-float-val {
+        font-family: "Cormorant Garamond", serif;
+        font-size: 30px;
+        font-weight: 500;
+        letter-spacing: -0.02em;
+        color: var(--ink);
+      }
+      .why-badge-float-label {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 10px;
+        font-weight: 500;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: var(--ink-light);
+        margin-top: 2px;
+      }
+
+      /* ─── CTA BANNER ─── */
+      #cta {
+        margin: 0 48px 120px;
+        background: var(--ink);
+        border-radius: var(--radius-xl);
+        padding: 80px 72px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 40px;
+      }
+      .cta-left {
+        max-width: 600px;
+      }
+      .cta-title {
+        font-family: "Cormorant Garamond", serif;
+        font-size: clamp(40px, 4.5vw, 68px);
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        color: var(--white);
+        line-height: 1;
+        margin-bottom: 16px;
+      }
+      .cta-title .accent {
+        color: var(--accent);
+      }
+      .cta-sub {
+        font-family: "DM Sans", sans-serif;
+        font-size: 15px;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 1.7;
+      }
+      .cta-actions {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .btn-white {
+        background: var(--white);
+        color: var(--ink);
+      }
+      .btn-white:hover {
+        box-shadow: 0 8px 32px rgba(255, 255, 255, 0.2);
+      }
+      .btn-ghost {
+        background: transparent;
+        color: rgba(255, 255, 255, 0.8);
+        border: 1.5px solid rgba(255, 255, 255, 0.2);
+      }
+      .btn-ghost:hover {
+        border-color: rgba(255, 255, 255, 0.6);
+        color: var(--white);
+      }
+
+      /* ─── FOOTER ─── */
+      footer {
+        background: var(--ink);
+        color: rgba(255, 255, 255, 0.7);
+        padding: 72px 48px 40px;
+      }
+      .footer-top {
+        display: grid;
+        grid-template-columns: 1.4fr 1fr 1fr 1fr;
+        gap: 48px;
+        margin-bottom: 64px;
+      }
+      .footer-brand-desc {
+        font-size: 14px;
+        line-height: 1.7;
+        margin: 16px 0 28px;
+        max-width: 280px;
+      }
+      .footer-newsletter {
+        display: flex;
+        gap: 8px;
+      }
+      .footer-newsletter input {
+        flex: 1;
+        padding: 12px 18px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1.5px solid rgba(255, 255, 255, 0.12);
+        border-radius: 100px;
+        color: var(--white);
+        font-size: 14px;
+        outline: none;
+        transition: border-color 0.2s;
+      }
+      .footer-newsletter input::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .footer-newsletter input:focus {
+        border-color: var(--accent);
+      }
+      .footer-col-title {
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--white);
+        margin-bottom: 20px;
+      }
+      .footer-links {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+      .footer-links a {
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        color: rgba(255, 255, 255, 0.55);
+        font-size: 14px;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--white);
+      }
+      .footer-divider {
+        height: 1px;
+        background: rgba(255, 255, 255, 0.08);
+        margin-bottom: 28px;
+      }
+      .footer-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.4);
+      }
+      .footer-bottom-links {
+        display: flex;
+        gap: 24px;
+      }
+      .footer-bottom-links a {
+        color: rgba(255, 255, 255, 0.4);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-bottom-links a:hover {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      /* ─── SCROLL REVEAL ─── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .reveal-left {
+        opacity: 0;
+        transform: translateX(-32px);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
+      }
+      .reveal-left.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .reveal-right {
+        opacity: 0;
+        transform: translateX(32px);
+        transition:
+          opacity 0.7s var(--ease),
+          transform 0.7s var(--ease);
+      }
+      .reveal-right.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* ─── RESPONSIVE ─── */
+      @media (max-width: 1024px) {
+        nav {
+          padding: 18px 32px;
+        }
+        nav.scrolled {
+          padding: 14px 32px;
+        }
+        #hero {
+          padding: 0 32px 64px;
+        }
+        #about {
+          grid-template-columns: 1fr;
+          gap: 48px;
+          padding: 80px 32px;
+        }
+        .about-body {
+          max-width: 100%;
+        }
+        #solutions {
+          padding: 0 32px 80px;
+        }
+        .solutions-grid {
+          grid-template-columns: 1fr 1fr;
+          grid-template-rows: auto;
+        }
+        .sol-card:first-child {
+          grid-row: auto;
+          grid-column: span 2;
+          height: 300px;
+        }
+        #impact {
+          margin: 0 32px 80px;
+        }
+        .impact-content {
+          grid-template-columns: 1fr 1fr;
+          padding: 60px 48px;
+        }
+        .impact-intro {
+          grid-column: span 2;
+        }
+        #pricing {
+          padding: 0 32px 80px;
+        }
+        #why {
+          grid-template-columns: 1fr;
+          gap: 48px;
+          padding: 0 32px 80px;
+        }
+        .why-visual {
+          height: 400px;
+        }
+        #cta {
+          padding: 60px 48px;
+          flex-direction: column;
+          margin: 0 32px 80px;
+        }
+        footer {
+          padding: 60px 32px 32px;
+        }
+        .footer-top {
+          grid-template-columns: 1fr 1fr;
+          gap: 40px;
+        }
+      }
+      @media (max-width: 680px) {
+        nav .nav-links,
+        nav .btn-outline {
+          display: none;
+        }
+        nav {
+          padding: 16px 24px;
+        }
+        #hero {
+          padding: 0 24px 56px;
+        }
+        .hero-float-card {
+          right: 24px;
+          bottom: 56px;
+          width: 200px;
+        }
+        #about {
+          padding: 64px 24px;
+        }
+        .about-images {
+          grid-template-columns: 1fr;
+          grid-template-rows: auto;
+        }
+        .about-img:first-child {
+          height: 240px;
+          grid-row: auto;
+        }
+        .about-img:not(:first-child) {
+          height: 180px;
+        }
+        #solutions {
+          padding: 0 24px 64px;
+        }
+        .solutions-grid {
+          grid-template-columns: 1fr;
+        }
+        .sol-card:first-child {
+          grid-column: auto;
+          height: 260px;
+        }
+        .sol-card {
+          height: 220px;
+        }
+        #impact {
+          margin: 0 24px 64px;
+          border-radius: var(--radius-lg);
+        }
+        .impact-content {
+          grid-template-columns: 1fr 1fr;
+          padding: 48px 32px;
+          gap: 28px;
+        }
+        .impact-intro {
+          grid-column: span 2;
+        }
+        #pricing {
+          padding: 0 24px 64px;
+        }
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+        #why {
+          padding: 0 24px 64px;
+        }
+        .why-card-float {
+          left: 16px;
+        }
+        .why-badge-float {
+          right: 16px;
+        }
+        #cta {
+          margin: 0 24px 64px;
+          padding: 48px 32px;
+          border-radius: var(--radius-lg);
+        }
+        footer {
+          padding: 48px 24px 28px;
+        }
+        .footer-top {
+          grid-template-columns: 1fr;
+        }
+        .footer-bottom {
+          flex-direction: column;
+          gap: 16px;
+          text-align: center;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-bg,
+        .sol-card img,
+        .reveal,
+        .reveal-left,
+        .reveal-right {
+          transition: none;
+        }
+        .hero-badge-dot {
+          animation: none;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ─── NAV ─── -->
+    <nav id="navbar">
+      <a href="#" class="nav-logo">
+        <!-- Logo: B-leaf-turbine mark -->
+        <svg
+          width="40"
+          height="44"
+          viewBox="0 0 40 44"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!-- Outer B / leaf shape -->
+          <path
+            d="M6 2 C6 2 6 42 6 42 C6 42 22 42 26 36 C30 30 28 24 22 22 C28 20 30 14 26 8 C22 2 6 2 6 2 Z"
+            stroke="#7EC832"
+            stroke-width="2.2"
+            fill="none"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+          />
+          <!-- Leaf vein in lower bowl -->
+          <path
+            d="M8 32 C12 30 18 34 24 36"
+            stroke="#7EC832"
+            stroke-width="1.6"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <!-- Turbine hub in upper bowl -->
+          <circle cx="17" cy="12" r="1.2" fill="#7EC832" />
+          <!-- Turbine blade 1 (up) -->
+          <path
+            d="M17 10.8 C16.4 8 15 6 14 5.5"
+            stroke="#7EC832"
+            stroke-width="1.5"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <!-- Turbine blade 2 (lower-right) -->
+          <path
+            d="M18.1 12.6 C20.5 13.8 22.5 13.5 23.2 12.8"
+            stroke="#7EC832"
+            stroke-width="1.5"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <!-- Turbine blade 3 (lower-left) -->
+          <path
+            d="M15.9 12.6 C13.5 13.8 11.8 14.8 11.2 15.6"
+            stroke="#7EC832"
+            stroke-width="1.5"
+            fill="none"
+            stroke-linecap="round"
+          />
+          <!-- Mast -->
+          <path
+            d="M17 14 L17 18"
+            stroke="#7EC832"
+            stroke-width="1.4"
+            stroke-linecap="round"
+          />
+        </svg>
+        <span class="nav-wordmark">Bumi<span>Wangi</span></span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">Tentang</a>
+        <a href="#solutions">Solusi</a>
+        <a href="#pricing">Paket</a>
+        <a href="#why">Mengapa Kami</a>
+      </div>
+      <div class="nav-cta">
+        <a href="#about" class="btn btn-outline">Pelajari</a>
+        <a href="#cta" class="btn btn-primary">Konsultasi Gratis</a>
+      </div>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <section id="hero">
+      <div class="hero-bg" id="heroBg"></div>
+      <div class="hero-overlay"></div>
+
+      <div class="hero-content">
+        <h1 class="hero-headline font-display">
+          <span class="line-1">Energi<span class="glyph">✦</span></span>
+          <span class="line-2">Bersih untuk</span>
+          <span class="line-3">Nusantara</span>
+        </h1>
+        <p class="hero-sub">
+          Solusi energi surya, angin, dan hidro terpadu untuk rumah, bisnis, dan
+          komunitas di seluruh Nusantara.
+        </p>
+        <div class="hero-actions">
+          <a href="#cta" class="btn btn-primary">
+            Mulai Sekarang
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </a>
+          <a
+            href="#solutions"
+            class="btn"
+            style="
+              color: white;
+              background: rgba(255, 255, 255, 0.12);
+              backdrop-filter: blur(8px);
+            "
+          >
+            Lihat Solusi Kami
+          </a>
+        </div>
+      </div>
+
+      <div class="hero-float-card" id="heroFloatCard">
+        <div class="hero-float-label">Output Listrik</div>
+        <div class="hero-float-val">48 <span>MW</span></div>
+        <div class="hero-float-meta">Total kapasitas terpasang</div>
+        <div class="hero-float-bar">
+          <div class="hero-float-bar-fill" id="heroBarFill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── ABOUT ─── -->
+    <section id="about">
+      <div class="about-left reveal-left">
+        <span class="eyebrow">Siapa Kami</span>
+        <h2 class="about-title font-display">
+          Menjaga <span class="dim">bumi</span><br />
+          tetap wangi<br />
+          untuk generasi<br />
+          <span class="dim">mendatang</span>
+        </h2>
+        <p class="about-body">
+          Bumi Wangi hadir sejak 2018 dengan misi sederhana: membuat energi
+          bersih bisa diakses oleh semua orang Indonesia — dari kota besar
+          hingga desa terpencil.
+        </p>
+        <p class="about-body" style="margin-top: -12px">
+          Kami bekerja bersama komunitas, bisnis, dan pemerintah daerah untuk
+          menghadirkan solusi yang bukan sekadar ramah lingkungan, tapi juga
+          ramah di kantong.
+        </p>
+        <a href="#solutions" class="btn btn-dark">
+          Lihat Solusi Kami
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+      <div class="about-images reveal-right">
+        <div class="about-img">
+          <img
+            src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=600&q=80&auto=format&fit=crop"
+            alt="Panel surya"
+            loading="lazy"
+          />
+        </div>
+        <div class="about-img">
+          <img
+            src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80&auto=format&fit=crop"
+            alt="Teknisi energi"
+            loading="lazy"
+          />
+        </div>
+        <div class="about-img">
+          <img
+            src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&q=80&auto=format&fit=crop"
+            alt="Ladang angin"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── SOLUTIONS ─── -->
+    <section id="solutions">
+      <div class="solutions-header reveal">
+        <div>
+          <span class="eyebrow">Layanan Kami</span>
+          <h2 class="solutions-title font-display">
+            Solusi Energi <span class="dim">yang</span><br />
+            <span class="dim">Tepat untuk</span> Anda
+          </h2>
+        </div>
+        <a href="#cta" class="btn btn-outline" style="flex-shrink: 0">
+          Semua Layanan
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="solutions-grid reveal">
+        <div class="sol-card">
+          <img
+            src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=800&q=80&auto=format&fit=crop"
+            alt="Panel Surya"
+            loading="lazy"
+          />
+          <div class="sol-card-overlay"></div>
+          <div class="sol-card-arrow">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </div>
+          <div class="sol-card-content">
+            <span class="sol-card-badge">Solar</span>
+            <div class="sol-card-title">Panel Surya<br />Atap & Industri</div>
+          </div>
+        </div>
+        <div class="sol-card">
+          <img
+            src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=600&q=80&auto=format&fit=crop"
+            alt="Turbin Angin"
+            loading="lazy"
+          />
+          <div class="sol-card-overlay"></div>
+          <div class="sol-card-arrow">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </div>
+          <div class="sol-card-content">
+            <span class="sol-card-badge">Angin</span>
+            <div class="sol-card-title">Turbin Angin Darat</div>
+          </div>
+        </div>
+        <div class="sol-card">
+          <img
+            src="https://images.unsplash.com/photo-1548337138-e87d889cc369?w=600&q=80&auto=format&fit=crop"
+            alt="Offshore Wind"
+            loading="lazy"
+          />
+          <div class="sol-card-overlay"></div>
+          <div class="sol-card-arrow">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </div>
+          <div class="sol-card-content">
+            <span class="sol-card-badge">Lepas Pantai</span>
+            <div class="sol-card-title">Angin Offshore</div>
+          </div>
+        </div>
+        <div class="sol-card">
+          <img
+            src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=600&q=80&auto=format&fit=crop"
+            alt="Konsultasi"
+            loading="lazy"
+          />
+          <div class="sol-card-overlay"></div>
+          <div class="sol-card-arrow">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </div>
+          <div class="sol-card-content">
+            <span class="sol-card-badge">Konsultasi</span>
+            <div class="sol-card-title">Asesmen & Instalasi</div>
+          </div>
+        </div>
+        <div class="sol-card">
+          <img
+            src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=600&q=80&auto=format&fit=crop"
+            alt="Penyimpanan Energi"
+            loading="lazy"
+          />
+          <div class="sol-card-overlay"></div>
+          <div class="sol-card-arrow">
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+            >
+              <path d="M7 17L17 7M17 7H7M17 7v10" />
+            </svg>
+          </div>
+          <div class="sol-card-content">
+            <span class="sol-card-badge">Baterai</span>
+            <div class="sol-card-title">Penyimpanan Energi</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── IMPACT ─── -->
+    <div id="impact" class="reveal">
+      <div class="impact-bg"></div>
+      <div class="impact-overlay"></div>
+      <div class="impact-content">
+        <div class="impact-intro">
+          <h3 class="impact-intro-title font-display">
+            Dampak Nyata<br />di Seluruh Indonesia
+          </h3>
+          <p class="impact-intro-sub">
+            Angka yang terus tumbuh, bumi yang semakin lestari.
+          </p>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number font-display">
+            <span class="counter" data-target="48">0</span
+            ><span class="stat-unit"> MW</span>
+          </div>
+          <div class="stat-label">Kapasitas<br />Terpasang</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number font-display">
+            <span class="counter" data-target="1200">0</span
+            ><span class="stat-unit">+</span>
+          </div>
+          <div class="stat-label">Proyek<br />Selesai</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number font-display">
+            <span class="counter" data-target="94">0</span
+            ><span class="stat-unit">%</span>
+          </div>
+          <div class="stat-label">Kepuasan<br />Pelanggan</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── PRICING ─── -->
+    <section id="pricing">
+      <div class="pricing-header reveal">
+        <span class="eyebrow">Paket Layanan</span>
+        <h2 class="pricing-title font-display">
+          Harga yang <span class="dim">Transparan</span><br />
+          <span class="dim">untuk Kualitas</span> Terbaik
+        </h2>
+      </div>
+      <div class="pricing-grid reveal">
+        <!-- Basic -->
+        <div class="price-card">
+          <div class="price-card-label">Paket Dasar</div>
+          <div class="price-card-tag">Populer</div>
+          <div class="price-card-amount">Rp 2,5 jt<small>/bulan</small></div>
+          <p class="price-card-desc">
+            Cocok untuk rumah tangga dan UMKM yang baru memulai transisi ke
+            energi bersih.
+          </p>
+          <div class="price-card-divider"></div>
+          <ul class="price-features">
+            <li>
+              <span class="price-check"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                >
+                  <path d="M20 6L9 17l-5-5" /></svg
+              ></span>
+              Instalasi panel surya 5 kWp
+            </li>
+            <li>
+              <span class="price-check"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                >
+                  <path d="M20 6L9 17l-5-5" /></svg
+              ></span>
+              Monitoring via aplikasi
+            </li>
+            <li>
+              <span class="price-check"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                >
+                  <path d="M20 6L9 17l-5-5" /></svg
+              ></span>
+              Garansi 10 tahun
+            </li>
+            <li>
+              <span class="price-check"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                >
+                  <path d="M20 6L9 17l-5-5" /></svg
+              ></span>
+              Servis tahunan gratis
+            </li>
+          </ul>
+          <a
+            href="#cta"
+            class="btn btn-dark"
+            style="width: 100%; justify-content: center"
+            >Pilih Paket</a
+          >
+        </div>
+        <!-- Premium -->
+        <div class="price-card dark">
+          <div class="price-card-label">Paket Premium</div>
+          <div class="price-card-tag">Terlengkap</div>
+          <div class="price-card-amount">Rp 6 jt<small>/bulan</small></div>
+          <p class="price-card-desc">
+            Untuk industri dan bisnis skala menengah yang butuh solusi energi
+            komprehensif.
+          </p>
+          <div class="price-card-divider"></div>
+          <ul class="price-features">
+            <li>
+              <span class="price-check"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  color="#7EC832"
+                >
+                  <path d="M20 6L9 17l-5-5" /></svg
+              ></span>
+              Instalasi hybrid surya + angin
+            </li>
+            <li>
+              <span class="price-check"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  color="#7EC832"
+                >
+                  <path d="M20 6L9 17l-5-5" /></svg
+              ></span>
+              Sistem baterai penyimpanan
+            </li>
+            <li>
+              <span class="price-check"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  color="#7EC832"
+                >
+                  <path d="M20 6L9 17l-5-5" /></svg
+              ></span>
+              Monitoring & optimasi real-time
+            </li>
+            <li>
+              <span class="price-check"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  color="#7EC832"
+                >
+                  <path d="M20 6L9 17l-5-5" /></svg
+              ></span>
+              Garansi 25 tahun + servis gratis
+            </li>
+            <li>
+              <span class="price-check"
+                ><svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="3"
+                  color="#7EC832"
+                >
+                  <path d="M20 6L9 17l-5-5" /></svg
+              ></span>
+              Manajer proyek dedikasi
+            </li>
+          </ul>
+          <a
+            href="#cta"
+            class="btn btn-primary"
+            style="width: 100%; justify-content: center"
+            >Pilih Premium</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── WHY ─── -->
+    <section id="why">
+      <div class="reveal-left">
+        <span class="eyebrow">Keunggulan Kami</span>
+        <h2 class="why-title font-display">
+          Mengapa Memilih<br />
+          <span class="dim">Bumi Wangi</span><br />
+          sebagai Mitra?
+        </h2>
+        <p class="why-body">
+          Lebih dari sekadar instalasi — kami adalah mitra jangka panjang yang
+          memastikan investasi energi Anda bekerja optimal setiap harinya.
+        </p>
+        <ul class="why-list">
+          <li>
+            <span class="why-list-icon"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path
+                  d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"
+                /></svg
+            ></span>
+            <div>
+              <strong>Bersertifikat SNI & ISO 9001</strong> — semua teknisi kami
+              tersertifikasi dan berpengalaman lebih dari 5 tahun di lapangan.
+            </div>
+          </li>
+          <li>
+            <span class="why-list-icon"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg
+            ></span>
+            <div>
+              <strong>Respons 24 jam</strong> — tim dukungan kami siap 24/7
+              untuk memastikan sistem Anda tidak pernah berhenti.
+            </div>
+          </li>
+          <li>
+            <span class="why-list-icon"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg
+            ></span>
+            <div>
+              <strong>ROI terukur</strong> — rata-rata pelanggan kami balik
+              modal dalam 4–6 tahun dengan penghematan hingga 80% tagihan
+              listrik.
+            </div>
+          </li>
+          <li>
+            <span class="why-list-icon"
+              ><svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <path
+                  d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                /></svg
+            ></span>
+            <div>
+              <strong>Jaringan di 34 provinsi</strong> — dari Sabang sampai
+              Merauke, kami hadir di seluruh Indonesia.
+            </div>
+          </li>
+        </ul>
+        <a href="#cta" class="btn btn-primary">
+          Konsultasi Gratis
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
+        </a>
+      </div>
+
+      <div class="why-visual reveal-right">
+        <div class="why-img-main">
+          <img
+            src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=800&q=80&auto=format&fit=crop"
+            alt="Tim Bumi Wangi"
+            loading="lazy"
+          />
+        </div>
+        <div class="why-card-float">
+          <div class="why-card-float-num">
+            <span class="counter" data-target="8">0</span
+            ><span style="color: var(--accent)">+</span>
+          </div>
+          <div class="why-card-float-label">
+            Tahun pengalaman di industri energi terbarukan
+          </div>
+        </div>
+        <div class="why-badge-float">
+          <div class="why-badge-float-val">80%</div>
+          <div class="why-badge-float-label">Hemat tagihan listrik</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── CTA BANNER ─── -->
+    <div id="cta" class="reveal">
+      <div class="cta-left">
+        <span class="eyebrow" style="color: rgba(255, 255, 255, 0.4)"
+          >Mulai Sekarang</span
+        >
+        <h2 class="cta-title font-display" style="margin-top: 12px">
+          Siap Beralih ke<br />
+          <span class="accent">Energi Bersih?</span>
+        </h2>
+        <p class="cta-sub">
+          Konsultasikan kebutuhan energi Anda bersama ahli kami — gratis, tanpa
+          komitmen.
+        </p>
+      </div>
+      <div class="cta-actions">
+        <a href="tel:+62800001234" class="btn btn-white">
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.5"
+          >
+            <path
+              d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.04 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14.92v2z"
+            />
+          </svg>
+          Hubungi Kami
+        </a>
+        <a href="mailto:hello@bumiwangi.id" class="btn btn-ghost">
+          Kirim Email
+        </a>
+      </div>
+    </div>
+
+    <!-- ─── FOOTER ─── -->
+    <footer>
+      <div class="footer-top">
+        <div>
+          <a href="#" class="nav-logo" style="color: white">
+            <div class="nav-logo-mark" style="background: var(--accent)">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="var(--ink)"
+                stroke-width="2"
+                stroke-linecap="round"
+              >
+                <path
+                  d="M12 2L12 8M12 8C12 8 8 8 6 11C4 14 5 18 8 19M12 8C12 8 16 8 18 11C20 14 19 18 16 19M8 19C9.5 20 11 20.5 12 20.5C13 20.5 14.5 20 16 19M8 19L8 22M16 19L16 22"
+                />
+              </svg>
+            </div>
+            <span class="nav-wordmark" style="color: white"
+              >Bumi<span>Wangi</span></span
+            >
+          </a>
+          <p class="footer-brand-desc">
+            Mitra energi terbarukan terpercaya untuk rumah, bisnis, dan
+            komunitas di seluruh Indonesia sejak 2018.
+          </p>
+          <div class="footer-newsletter">
+            <input type="email" placeholder="Email Anda" />
+            <button class="btn-circle">
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.5"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div>
+          <div class="footer-col-title">Layanan</div>
+          <ul class="footer-links">
+            <li><a href="#">Panel Surya Atap</a></li>
+            <li><a href="#">Turbin Angin</a></li>
+            <li><a href="#">Sistem Baterai</a></li>
+            <li><a href="#">Konsultasi & Asesmen</a></li>
+            <li><a href="#">Monitoring & Servis</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Perusahaan</div>
+          <ul class="footer-links">
+            <li><a href="#">Tentang Kami</a></li>
+            <li><a href="#">Tim</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Karir</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Kontak</div>
+          <ul class="footer-links">
+            <li><a href="mailto:hello@bumiwangi.id">hello@bumiwangi.id</a></li>
+            <li><a href="tel:+628001234567">0800-1234-567</a></li>
+            <li>
+              <a href="#"
+                >Jl. Gatot Subroto No. 12<br />Jakarta Selatan, 12930</a
+              >
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-divider"></div>
+      <div class="footer-bottom">
+        <span>© 2026 Bumi Wangi. Hak cipta dilindungi.</span>
+        <div class="footer-bottom-links">
+          <a href="#">Privasi</a>
+          <a href="#">Syarat</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // ─── NAV SCROLL ───
+      const navbar = document.getElementById("navbar");
+      window.addEventListener(
+        "scroll",
+        () => {
+          navbar.classList.toggle("scrolled", window.scrollY > 60);
+        },
+        { passive: true },
+      );
+
+      // ─── HERO IMAGE LOAD ───
+      const heroBg = document.getElementById("heroBg");
+      const img = new Image();
+      img.onload = () => heroBg.classList.add("loaded");
+      img.src =
+        "https://images.unsplash.com/photo-1466611653911-95081537e5b7?w=1800&q=85&auto=format&fit=crop";
+      // Fill bar after load
+      setTimeout(() => {
+        const bar = document.getElementById("heroBarFill");
+        if (bar) bar.style.width = "72%";
+      }, 800);
+
+      // ─── SCROLL REVEAL ───
+      const revealEls = document.querySelectorAll(
+        ".reveal, .reveal-left, .reveal-right",
+      );
+      const revealObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("visible");
+              revealObs.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+      );
+      revealEls.forEach((el) => revealObs.observe(el));
+
+      // ─── STAGGERED GRID REVEAL ───
+      document
+        .querySelectorAll(".solutions-grid, .pricing-grid")
+        .forEach((grid) => {
+          const cards = grid.children;
+          Array.from(cards).forEach((card, i) => {
+            card.style.transitionDelay = `${i * 80}ms`;
+          });
+        });
+
+      // ─── COUNTER ANIMATION ───
+      const counters = document.querySelectorAll(".counter");
+      const counterObs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+            const el = entry.target;
+            const target = parseInt(el.dataset.target, 10);
+            const duration = 1800;
+            const start = performance.now();
+            const ease = (t) => (t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t);
+
+            const tick = (now) => {
+              const elapsed = now - start;
+              const progress = Math.min(elapsed / duration, 1);
+              el.textContent = Math.round(
+                ease(progress) * target,
+              ).toLocaleString("id-ID");
+              if (progress < 1) requestAnimationFrame(tick);
+            };
+            requestAnimationFrame(tick);
+            counterObs.unobserve(el);
+          });
+        },
+        { threshold: 0.5 },
+      );
+      counters.forEach((el) => counterObs.observe(el));
+    </script>
+  </body>
+</html>
